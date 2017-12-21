@@ -79,12 +79,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="jinglw&#39;blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="介绍TextDrawable是一个轻量级的库，可以提供类似于Gmail APP的文本或字母图像。 使用123TextDrawable drawable = TextDrawable.builder().buildRect(&quot;A&quot;, Color.RED);ImageView image = (ImageView) findViewById(R.id.image_view);image.setImag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="源码解析之路-TextDrawable">
+<meta property="og:url" content="http://yoursite.com/2017/12/21/源码解析之路-TextDrawable/index.html">
 <meta property="og:site_name" content="jinglw&#39;blog">
+<meta property="og:description" content="介绍TextDrawable是一个轻量级的库，可以提供类似于Gmail APP的文本或字母图像。 使用123TextDrawable drawable = TextDrawable.builder().buildRect(&quot;A&quot;, Color.RED);ImageView image = (ImageView) findViewById(R.id.image_view);image.setImag">
+<meta property="og:updated_time" content="2017-12-21T06:08:29.712Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jinglw&#39;blog">
+<meta name="twitter:title" content="源码解析之路-TextDrawable">
+<meta name="twitter:description" content="介绍TextDrawable是一个轻量级的库，可以提供类似于Gmail APP的文本或字母图像。 使用123TextDrawable drawable = TextDrawable.builder().buildRect(&quot;A&quot;, Color.RED);ImageView image = (ImageView) findViewById(R.id.image_view);image.setImag">
 
 
 
@@ -114,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/12/21/源码解析之路-TextDrawable/"/>
 
 
 
 
 
-  <title>jinglw'blog</title>
+  <title>源码解析之路-TextDrawable | jinglw'blog</title>
   
 
 
@@ -139,8 +143,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -213,9 +216,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -245,9 +248,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/21/源码解析之路-TextDrawable/" itemprop="url">源码解析之路-TextDrawable</a></h1>
+          <h1 class="post-title" itemprop="name headline">源码解析之路-TextDrawable</h1>
         
 
         <div class="post-meta">
@@ -297,16 +298,12 @@
       
 
       
-        
-          
-            <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="https://github.com/amulyakhare/TextDrawable" target="_blank" rel="noopener">TextDrawable</a>是一个轻量级的库，可以提供类似于Gmail APP的文本或字母图像。</p>
+        <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><a href="https://github.com/amulyakhare/TextDrawable" target="_blank" rel="noopener">TextDrawable</a>是一个轻量级的库，可以提供类似于Gmail APP的文本或字母图像。</p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">TextDrawable drawable = TextDrawable.builder().buildRect(<span class="string">"A"</span>, Color.RED);</span><br><span class="line">ImageView image = (ImageView) findViewById(R.id.image_view);</span><br><span class="line">image.setImageDrawable(drawable);</span><br></pre></td></tr></table></figure>
 <h3 id="圆角方形"><a href="#圆角方形" class="headerlink" title="圆角方形"></a>圆角方形</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">TextDrawable drawable1 = TextDrawable.builder()</span><br><span class="line">				.buildRoundRect(<span class="string">"A"</span>, Color.RED, <span class="number">10</span>); <span class="comment">// radius in px</span></span><br></pre></td></tr></table></figure>
 <h3 id="圆形"><a href="#圆形" class="headerlink" title="圆形"></a>圆形</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TextDrawable drawable2 = TextDrawable.builder().buildRound(<span class="string">"A"</span>, Color.RED);</span><br></pre></td></tr></table></figure>
 <h2 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析"></a>代码解析</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.amulyakhare.textdrawable;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.graphics.*;</span><br><span class="line"><span class="keyword">import</span> android.graphics.drawable.ShapeDrawable;</span><br><span class="line"><span class="keyword">import</span> android.graphics.drawable.shapes.OvalShape;</span><br><span class="line"><span class="keyword">import</span> android.graphics.drawable.shapes.RectShape;</span><br><span class="line"><span class="keyword">import</span> android.graphics.drawable.shapes.RoundRectShape;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> amulya</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@datetime</span> 14 Oct 2014, 3:53 PM</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TextDrawable</span> <span class="keyword">extends</span> <span class="title">ShapeDrawable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Paint textPaint;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Paint borderPaint;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">float</span> SHADE_FACTOR = <span class="number">0.9f</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String text;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> color;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> RectShape shape;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> height;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> width;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> fontSize;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">float</span> radius;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> borderThickness;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">TextDrawable</span><span class="params">(Builder builder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(builder.shape);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// shape properties</span></span><br><span class="line">        shape = builder.shape;</span><br><span class="line">        height = builder.height;</span><br><span class="line">        width = builder.width;</span><br><span class="line">        radius = builder.radius;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// text and color</span></span><br><span class="line">        text = builder.toUpperCase ? builder.text.toUpperCase() : builder.text;</span><br><span class="line">        color = builder.color;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// text paint settings</span></span><br><span class="line">        fontSize = builder.fontSize;</span><br><span class="line">        textPaint = <span class="keyword">new</span> Paint();</span><br><span class="line">        textPaint.setColor(builder.textColor);</span><br><span class="line">        textPaint.setAntiAlias(<span class="keyword">true</span>);</span><br><span class="line">        textPaint.setFakeBoldText(builder.isBold);</span><br><span class="line">        textPaint.setStyle(Paint.Style.FILL);</span><br><span class="line">        textPaint.setTypeface(builder.font);</span><br><span class="line">        textPaint.setTextAlign(Paint.Align.CENTER);</span><br><span class="line">        textPaint.setStrokeWidth(builder.borderThickness);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// border paint settings</span></span><br><span class="line">        borderThickness = builder.borderThickness;</span><br><span class="line">        borderPaint = <span class="keyword">new</span> Paint();</span><br><span class="line">        borderPaint.setColor(getDarkerShade(color));</span><br><span class="line">        borderPaint.setStyle(Paint.Style.STROKE);</span><br><span class="line">        borderPaint.setStrokeWidth(borderThickness);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// drawable paint color</span></span><br><span class="line">        Paint paint = getPaint();</span><br><span class="line">        paint.setColor(color);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">getDarkerShade</span><span class="params">(<span class="keyword">int</span> color)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Color.rgb((<span class="keyword">int</span>)(SHADE_FACTOR * Color.red(color)),</span><br><span class="line">                (<span class="keyword">int</span>)(SHADE_FACTOR * Color.green(color)),</span><br><span class="line">                (<span class="keyword">int</span>)(SHADE_FACTOR * Color.blue(color)));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.draw(canvas);</span><br><span class="line">        Rect r = getBounds();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// draw border</span></span><br><span class="line">        <span class="keyword">if</span> (borderThickness &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            drawBorder(canvas);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> count = canvas.save();</span><br><span class="line">        canvas.translate(r.left, r.top);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// draw text</span></span><br><span class="line">        <span class="keyword">int</span> width = <span class="keyword">this</span>.width &lt; <span class="number">0</span> ? r.width() : <span class="keyword">this</span>.width;</span><br><span class="line">        <span class="keyword">int</span> height = <span class="keyword">this</span>.height &lt; <span class="number">0</span> ? r.height() : <span class="keyword">this</span>.height;</span><br><span class="line">        <span class="keyword">int</span> fontSize = <span class="keyword">this</span>.fontSize &lt; <span class="number">0</span> ? (Math.min(width, height) / <span class="number">2</span>) : <span class="keyword">this</span>.fontSize;</span><br><span class="line">        textPaint.setTextSize(fontSize);</span><br><span class="line">        canvas.drawText(text, width / <span class="number">2</span>, height / <span class="number">2</span> - ((textPaint.descent() + textPaint.ascent()) / <span class="number">2</span>), textPaint);</span><br><span class="line"></span><br><span class="line">        canvas.restoreToCount(count);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">drawBorder</span><span class="params">(Canvas canvas)</span> </span>&#123;</span><br><span class="line">        RectF rect = <span class="keyword">new</span> RectF(getBounds());</span><br><span class="line">        rect.inset(borderThickness/<span class="number">2</span>, borderThickness/<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (shape <span class="keyword">instanceof</span> OvalShape) &#123;</span><br><span class="line">            canvas.drawOval(rect, borderPaint);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (shape <span class="keyword">instanceof</span> RoundRectShape) &#123;</span><br><span class="line">            canvas.drawRoundRect(rect, radius, radius, borderPaint);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            canvas.drawRect(rect, borderPaint);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAlpha</span><span class="params">(<span class="keyword">int</span> alpha)</span> </span>&#123;</span><br><span class="line">        textPaint.setAlpha(alpha);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColorFilter</span><span class="params">(ColorFilter cf)</span> </span>&#123;</span><br><span class="line">        textPaint.setColorFilter(cf);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getOpacity</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> PixelFormat.TRANSLUCENT;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getIntrinsicWidth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> width;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getIntrinsicHeight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> height;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IShapeBuilder <span class="title">builder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Builder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> <span class="keyword">implements</span> <span class="title">IConfigBuilder</span>, <span class="title">IShapeBuilder</span>, <span class="title">IBuilder</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> String text;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> color;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> borderThickness;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> width;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> height;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> Typeface font;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> RectShape shape;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">int</span> textColor;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> fontSize;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> isBold;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">boolean</span> toUpperCase;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">float</span> radius;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> <span class="title">Builder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            text = <span class="string">""</span>;</span><br><span class="line">            color = Color.GRAY;</span><br><span class="line">            textColor = Color.WHITE;</span><br><span class="line">            borderThickness = <span class="number">0</span>;</span><br><span class="line">            width = -<span class="number">1</span>;</span><br><span class="line">            height = -<span class="number">1</span>;</span><br><span class="line">            shape = <span class="keyword">new</span> RectShape();</span><br><span class="line">            font = Typeface.create(<span class="string">"sans-serif-light"</span>, Typeface.NORMAL);</span><br><span class="line">            fontSize = -<span class="number">1</span>;</span><br><span class="line">            isBold = <span class="keyword">false</span>;</span><br><span class="line">            toUpperCase = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">width</span><span class="params">(<span class="keyword">int</span> width)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.width = width;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">height</span><span class="params">(<span class="keyword">int</span> height)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.height = height;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">textColor</span><span class="params">(<span class="keyword">int</span> color)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.textColor = color;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">withBorder</span><span class="params">(<span class="keyword">int</span> thickness)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.borderThickness = thickness;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">useFont</span><span class="params">(Typeface font)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.font = font;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">fontSize</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.fontSize = size;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">bold</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.isBold = <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">toUpperCase</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.toUpperCase = <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">beginConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IShapeBuilder <span class="title">endConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IBuilder <span class="title">rect</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.shape = <span class="keyword">new</span> RectShape();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IBuilder <span class="title">round</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.shape = <span class="keyword">new</span> OvalShape();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IBuilder <span class="title">roundRect</span><span class="params">(<span class="keyword">int</span> radius)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.radius = radius;</span><br><span class="line">            <span class="keyword">float</span>[] radii = &#123;radius, radius, radius, radius, radius, radius, radius, radius&#125;;</span><br><span class="line">            <span class="keyword">this</span>.shape = <span class="keyword">new</span> RoundRectShape(radii, <span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> TextDrawable <span class="title">buildRect</span><span class="params">(String text, <span class="keyword">int</span> color)</span> </span>&#123;</span><br><span class="line">            rect();</span><br><span class="line">            <span class="keyword">return</span> build(text, color);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> TextDrawable <span class="title">buildRoundRect</span><span class="params">(String text, <span class="keyword">int</span> color, <span class="keyword">int</span> radius)</span> </span>&#123;</span><br><span class="line">            roundRect(radius);</span><br><span class="line">            <span class="keyword">return</span> build(text, color);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> TextDrawable <span class="title">buildRound</span><span class="params">(String text, <span class="keyword">int</span> color)</span> </span>&#123;</span><br><span class="line">            round();</span><br><span class="line">            <span class="keyword">return</span> build(text, color);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> TextDrawable <span class="title">build</span><span class="params">(String text, <span class="keyword">int</span> color)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.color = color;</span><br><span class="line">            <span class="keyword">this</span>.text = text;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> TextDrawable(<span class="keyword">this</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IConfigBuilder</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">width</span><span class="params">(<span class="keyword">int</span> width)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">height</span><span class="params">(<span class="keyword">int</span> height)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">textColor</span><span class="params">(<span class="keyword">int</span> color)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">withBorder</span><span class="params">(<span class="keyword">int</span> thickness)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">useFont</span><span class="params">(Typeface font)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">fontSize</span><span class="params">(<span class="keyword">int</span> size)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">bold</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">toUpperCase</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IShapeBuilder <span class="title">endConfig</span><span class="params">()</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">interface</span> <span class="title">IBuilder</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> TextDrawable <span class="title">build</span><span class="params">(String text, <span class="keyword">int</span> color)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">interface</span> <span class="title">IShapeBuilder</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IConfigBuilder <span class="title">beginConfig</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IBuilder <span class="title">rect</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IBuilder <span class="title">round</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> IBuilder <span class="title">roundRect</span><span class="params">(<span class="keyword">int</span> radius)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> TextDrawable <span class="title">buildRect</span><span class="params">(String text, <span class="keyword">int</span> color)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> TextDrawable <span class="title">buildRoundRect</span><span class="params">(String text, <span class="keyword">int</span> color, <span class="keyword">int</span> radius)</span></span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> TextDrawable <span class="title">buildRound</span><span class="params">(String text, <span class="keyword">int</span> color)</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
     
@@ -323,140 +320,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jinglw">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jinglw'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/15/hexo/" itemprop="url">Hexo</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-15T14:21:26+08:00">
-                2017-12-15
-              </time>
+              <a href="/2017/12/15/hexo/" rel="next" title="Hexo">
+                <i class="fa fa-chevron-left"></i> Hexo
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -466,10 +351,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -477,6 +363,8 @@
 
 
           
+  
+
 
         </div>
         
@@ -497,8 +385,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -551,6 +448,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text"><a href="#&#x4ECB;&#x7ECD;" class="headerlink" title="&#x4ECB;&#x7ECD;"></a>&#x4ECB;&#x7ECD;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">2.</span> <span class="nav-text"><a href="#&#x4F7F;&#x7528;" class="headerlink" title="&#x4F7F;&#x7528;"></a>&#x4F7F;&#x7528;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#圆角方形"><span class="nav-number">2.1.</span> <span class="nav-text"><a href="#&#x5706;&#x89D2;&#x65B9;&#x5F62;" class="headerlink" title="&#x5706;&#x89D2;&#x65B9;&#x5F62;"></a>&#x5706;&#x89D2;&#x65B9;&#x5F62;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#圆形"><span class="nav-number">2.2.</span> <span class="nav-text"><a href="#&#x5706;&#x5F62;" class="headerlink" title="&#x5706;&#x5F62;"></a>&#x5706;&#x5F62;</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码解析"><span class="nav-number">3.</span> <span class="nav-text"><a href="#&#x4EE3;&#x7801;&#x89E3;&#x6790;" class="headerlink" title="&#x4EE3;&#x7801;&#x89E3;&#x6790;"></a>&#x4EE3;&#x7801;&#x89E3;&#x6790;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -670,6 +583,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 
